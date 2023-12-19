@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
 import LineChart from './LineChart';
 
-const TabContent = ({ playerOneData, playerTwoData }) => {
-
-    console.log(playerOneData[0]);
-    console.log(playerOneData[1]);
+const TabContent = ({ playerOneData, playerTwoData, yLabel }) => {
 
     return (
         <div>
-            <div style={{ float: 'left', width: '50%' }}>
-                <LineChart yData={playerOneData[0]} xYears={playerOneData[1]}/>
-            </div>
-            <div style={{ float: 'right', width: '50%' }}>
-                <LineChart yData={playerTwoData[0]} xYears={playerTwoData[1]} />
-            </div>
+            <div>{playerOneData[0]}</div>
+            <LineChart yData={playerOneData[1]} xYears={playerOneData[2]} yLabel={yLabel}/>
+            <div>{playerTwoData[0]}</div>
+            <LineChart yData={playerTwoData[1]} xYears={playerTwoData[2]} yLabel={yLabel}/>
         </div>
     );
   
 };
 
 const Carousel = ({ playerOne, playerTwo }) => {
+
   const [activeTab, setActiveTab] = useState(1);
-
-  console.log(playerOne);
-
-  console.log(playerTwo);
 
   const handleTabChange = (direction) => {
     setActiveTab((prevTab) => {
@@ -38,27 +30,42 @@ const Carousel = ({ playerOne, playerTwo }) => {
 
   return (
     <div className="carousel-container">
+
+    
       <div className="tab">
-        <button onClick={() => handleTabChange('left')}>Prev</button>
-        <div className={`tab-content ${activeTab === 1 ? 'active' : ''}`}>
-          <TabContent playerOneData={ [ [5,10,4,6,7,1], [12,13,14,15,16,17] ] } playerTwoData={ [ [6,3,15,3,7,15], [12,13,14,15,16,17] ] }/>
-            one
-        </div>
-        <div className={`tab-content ${activeTab === 2 ? 'active' : ''}`}>
-          <TabContent playerOneData={ [ playerOne.yards, playerOne.years ] } playerTwoData={ [ playerTwo.yards, playerTwo.years ] }/>
-            two
-        </div>
-        <div className={`tab-content ${activeTab === 3 ? 'active' : ''}`}>
-          <TabContent playerOneData={ [ playerOne.int, playerOne.years ] } playerTwoData={ [ playerTwo.int, playerTwo.years ] }/>
-            three
-        </div>
-        <div className={`tab-content ${activeTab === 4 ? 'active' : ''}`}>
-          <TabContent playerOneData={ [ playerOne.rate, playerOne.years ] } playerTwoData={ [ playerTwo.rate, playerTwo.years ] }/>
-            four
-        </div>
-        <button onClick={() => handleTabChange('right')}>Next</button>
+        <button onClick={() => handleTabChange('left')} className="Previous-Button">←</button>
+
+        {activeTab === 1 &&
+            <div>
+                <div>Completion Percentage</div>
+                <div>——————————————</div>
+                <TabContent playerOneData={ [ playerOne.name, playerOne.completionPerc, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.completionPerc, playerTwo.years ] } yLabel={'Percentage /100'}/>
+            </div>
+        }
+        {activeTab === 2 &&
+            <div>
+                <div>Yards</div>
+                <div>——————————————</div>
+                <TabContent playerOneData={ [ playerOne.name, playerOne.yards, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.yards, playerTwo.years ] } yLabel={'Yards'}/>
+            </div>
+        }
+        {activeTab === 3 &&
+            <div>
+                <div>Interceptions</div>
+                <div>——————————————</div>
+                <TabContent playerOneData={ [ playerOne.name, playerOne.int, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.int, playerTwo.years ] } yLabel={'Intercepts'}/>
+            </div>
+        }
+        {activeTab === 4 &&
+            <div>
+                <div>Rates</div>
+                <div>——————————————</div>
+                <TabContent playerOneData={ [ playerOne.name, playerOne.rate, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.rate, playerTwo.years ] } yLabel={'Rate'}/>
+            </div>
+        }
+        <button onClick={() => handleTabChange('right')} className="Next-Button">→</button>
       </div>
-    </div>
+    </div> 
   );
 };
 

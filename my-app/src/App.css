@@ -55,9 +55,28 @@
   transition: background-color 0.3s, transform 0.3s;
 }
 
+.Previous-Button,
+.Next-Button {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #AF9164;
+  width: 60px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
 .compare-button:hover,
 .record-button:hover,
 .popup-button:hover {
+  background-color: #d5b077;
+  transform: scale(1.05);
+}
+
+.Previous-Button:hover,
+.Next-Button:hover {
   background-color: #d5b077;
   transform: scale(1.05);
 }
@@ -97,7 +116,7 @@
 }
 
 .carousel-container {
-  width: 80%;
+  width: 100%;
   margin: 20px auto;
 }
 
@@ -118,6 +137,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
 }
 .dropdown {
   margin-right: 20px;

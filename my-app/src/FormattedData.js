@@ -18,7 +18,7 @@ const playerTilePhotos = [
 const bestPlayerStats = new Map();
 
 qbData.forEach(entry => {
-    const [name, year, completionPerc, yards, int, rate] = entry;
+    const [name, , completionPerc, yards, int, rate] = entry;
     const player = bestPlayerStats.get(name);
 
     if (player) {
@@ -76,10 +76,37 @@ const comparisonArray = Object.keys(resultObject).map((name) => ({
     rate: resultObject[name].rate,
 }));
 
-console.log(comparisonArray);
+
+const recordValues = {
+    completionPerc: [qbData[0][2], qbData[0][0]],
+    yards: [qbData[0][3], qbData[0][0]],
+    ints: [qbData[0][4], qbData[0][0]],
+    rate: [qbData[0][5], qbData[0][0]],
+};
+
+qbData.forEach(player => {
+    const [playerName, , completionPerc, yards, ints, rate] = player;
+
+    if (completionPerc > recordValues.completionPerc[0]) {
+        recordValues.completionPerc = [completionPerc, playerName];
+    }
+
+    if (yards > recordValues.yards[0]) {
+        recordValues.yards = [yards, playerName];
+    }
+
+    if (ints > recordValues.ints[0]) {
+      recordValues.ints = [ints, playerName];
+    }
+
+    if (rate > recordValues.rate[0]) {
+      recordValues.rate = [rate, playerName];
+    }
+});
 
 export {
     playerTilePhotos,
     playersBestObjArray,
-    comparisonArray
+    comparisonArray,
+    recordValues
 };

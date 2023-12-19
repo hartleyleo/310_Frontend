@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
-const LineChart = ({ yData, xYears }) => {
+const LineChart = ({ yData, xYears, yLabel }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const LineChart = ({ yData, xYears }) => {
           y: {
             title: {
               display: true,
-              text: 'Y-Axis Label',
+              text: yLabel,
             },
           },
         },
@@ -44,7 +44,7 @@ const LineChart = ({ yData, xYears }) => {
     return () => {
       myChart.destroy();
     };
-  }, [yData, xYears]);
+  }, [yData, xYears, yLabel]);
 
   return <canvas ref={chartRef} />;
 };
