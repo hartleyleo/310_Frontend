@@ -95,3 +95,36 @@
 .bottom-section {
   margin-top: 20px;
 }
+
+.carousel-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dropdown {
+  margin-right: 20px;
+}
+
+select {
+  width: 150px;
+  padding: 5px;
+  margin-top: 5px;
+}
