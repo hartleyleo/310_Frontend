@@ -23,6 +23,7 @@ const Dropdowns = ({ setOption }) => {
         <select
           id="dropdown"
           onChange={(e) => setOption(e.target.value)}
+          className="custom-select"
         >
           {options.map((option, index) => (
             <option key={index} value={option}>

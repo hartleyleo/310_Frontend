@@ -21,9 +21,9 @@ const Carousel = ({ playerOne, playerTwo }) => {
   const handleTabChange = (direction) => {
     setActiveTab((prevTab) => {
       if (direction === 'left') {
-        return prevTab > 1 ? prevTab - 1 : 4;
+        return prevTab > 1 ? prevTab - 1 : 5;
       } else {
-        return prevTab < 4 ? prevTab + 1 : 1;
+        return prevTab < 5 ? prevTab + 1 : 1;
       }
     });
   };
@@ -51,12 +51,19 @@ const Carousel = ({ playerOne, playerTwo }) => {
         }
         {activeTab === 3 &&
             <div>
+                <div>Touchdowns</div>
+                <div>——————————————</div>
+                <TabContent playerOneData={ [ playerOne.name, playerOne.touchDowns, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.touchDowns, playerTwo.years ] } yLabel={'Touchdowns'}/>
+            </div>
+        }
+        {activeTab === 4 &&
+            <div>
                 <div>Interceptions</div>
                 <div>——————————————</div>
                 <TabContent playerOneData={ [ playerOne.name, playerOne.int, playerOne.years ] } playerTwoData={ [ playerTwo.name, playerTwo.int, playerTwo.years ] } yLabel={'Intercepts'}/>
             </div>
         }
-        {activeTab === 4 &&
+        {activeTab === 5 &&
             <div>
                 <div>Rates</div>
                 <div>——————————————</div>

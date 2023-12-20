@@ -143,8 +143,24 @@
   margin-right: 20px;
 }
 
-select {
+.custom-select {
+  font-size: 16px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  background-color: #AF9164;
+  color: #333;
   width: 150px;
-  padding: 5px;
-  margin-top: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.custom-select:hover {
+  border-color: #aaa;
+}
+
+.custom-select:focus {
+  border-color: #2B2118;
 }
