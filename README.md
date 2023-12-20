@@ -11,4 +11,4 @@ To run this webapp:
 4. Start up the server on your device with the following command while still in the same directory: `npm start`
 
 Notes: 
-- If the error message displays a message similar to: "Unable to resolve 'chart.js/auto' ", in the terminal, ensure you're in the my-app directoy (refer to step 3), and run `npm install react-chartjs-2`. This will install the dependency that might not have copied over into the package.json file whilst cloning.
+- If an error message similar to "Unable to resolve 'chart.js/auto' " whilst trying to run `npm start`, ensure you're in the my-app directoy in Ternminal (refer to step 3), and run `npm install react-chartjs-2`. This will install the dependency that might not have copied over into the package.json file whilst cloning.
