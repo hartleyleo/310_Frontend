@@ -11,7 +11,7 @@ const ComparePopup = ({ onClose }) => {
 
     const handleCompareClick = () => {
         setPlayersSelected(true);
-      };
+    };
     
     return (
         <div className="overlay">

@@ -18,13 +18,14 @@ const playerTilePhotos = [
 const bestPlayerStats = new Map();
 
 qbData.forEach(entry => {
-    const [name, , completionPerc, yards, int, rate] = entry;
+    const [name, , completionPerc, yards, touchDowns, int, rate] = entry;
     const player = bestPlayerStats.get(name);
 
     if (player) {
         player.yearsPlayed++;
         player.completionPerc = Math.max(player.completionPerc, completionPerc);
         player.yards = Math.max(player.yards, yards);
+        player.touchDowns = Math.max(player.touchDowns, touchDowns);
         player.int = Math.max(player.int, int);
         player.rate = Math.max(player.rate, rate);
     } else {
@@ -33,6 +34,7 @@ qbData.forEach(entry => {
             yearsPlayed: 1,
             completionPerc,
             yards,
+            touchDowns,
             int,
             rate
         });
@@ -45,13 +47,14 @@ const playersBestObjArray = Array.from(bestPlayerStats.values());
 const resultObject = {};
 
 qbData.forEach((entry) => {
-    const [name, year, completionPerc, yards, int, rate] = entry;
+    const [name, year, completionPerc, yards, touchDowns, int, rate] = entry;
 
     if (resultObject[name]) {
         // If the entry already exists, append values to their respective arrays
         resultObject[name].years.push(year);
         resultObject[name].completionPerc.push(completionPerc);
         resultObject[name].yards.push(yards);
+        resultObject[name].touchDowns.push(touchDowns);
         resultObject[name].int.push(int);
         resultObject[name].rate.push(rate);
     } else {
@@ -60,6 +63,7 @@ qbData.forEach((entry) => {
             years: [year],
             completionPerc: [completionPerc],
             yards: [yards],
+            touchDowns: [touchDowns],
             int: [int],
             rate: [rate],
         };
@@ -72,6 +76,7 @@ const comparisonArray = Object.keys(resultObject).map((name) => ({
     years: resultObject[name].years,
     completionPerc: resultObject[name].completionPerc,
     yards: resultObject[name].yards,
+    touchDowns: resultObject[name].touchDowns,
     int: resultObject[name].int,
     rate: resultObject[name].rate,
 }));
@@ -80,12 +85,13 @@ const comparisonArray = Object.keys(resultObject).map((name) => ({
 const recordValues = {
     completionPerc: [qbData[0][2], qbData[0][0]],
     yards: [qbData[0][3], qbData[0][0]],
-    ints: [qbData[0][4], qbData[0][0]],
-    rate: [qbData[0][5], qbData[0][0]],
+    touchDowns: [qbData[0][4], qbData[0][0]],
+    ints: [qbData[0][5], qbData[0][0]],
+    rate: [qbData[0][6], qbData[0][0]],
 };
 
 qbData.forEach(player => {
-    const [playerName, , completionPerc, yards, ints, rate] = player;
+    const [playerName, , completionPerc, yards, touchDowns, ints, rate] = player;
 
     if (completionPerc > recordValues.completionPerc[0]) {
         recordValues.completionPerc = [completionPerc, playerName];
@@ -95,12 +101,16 @@ qbData.forEach(player => {
         recordValues.yards = [yards, playerName];
     }
 
+    if (touchDowns > recordValues.touchDowns[0]) {
+        recordValues.touchDowns = [touchDowns, playerName];
+    }
+
     if (ints > recordValues.ints[0]) {
-      recordValues.ints = [ints, playerName];
+        recordValues.ints = [ints, playerName];
     }
 
     if (rate > recordValues.rate[0]) {
-      recordValues.rate = [rate, playerName];
+        recordValues.rate = [rate, playerName];
     }
 });
 

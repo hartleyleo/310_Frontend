@@ -18,8 +18,8 @@ const Popup = ({ onClose, name }) => {
                 <div className="bottom-section">
                     <p>Best Completion %: {foundPlayer.completionPerc}</p>
                     <p>Best Yards: {foundPlayer.yards}</p>
+                    <p>Best Touchdown Count: {foundPlayer.touchDowns}</p>
                     <p>Best Interceptions: {foundPlayer.int}</p>
-                    <p>Best Rate: {foundPlayer.rate}</p>
                 </div>
 
                 <button className="popup-button" onClick={onClose}>

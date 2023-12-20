@@ -11,11 +11,11 @@ const PlayerGrid = ({ openPopup, playerTilePhotos }) => {
             {
                 playerTilePhotos.map((photo, index) => (
                     <div
-                    key={index}
-                    className="player-picture"
-                    onClick={() => handlePlayerTileClick(photo[1])}
+                        key={index}
+                        className="player-picture"
+                        onClick={() => handlePlayerTileClick(photo[1])}
                     >
-                    <img src={require(`${photo[0]}`)} alt="brady" width="100" height="100"/>
+                    <img src={require(`${photo[0]}`)} alt="Player" width="100" height="100"/>
                     </div> 
                 ))
             }
